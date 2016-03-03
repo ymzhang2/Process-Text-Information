@@ -1,5 +1,5 @@
 
-# Process-Text-Information
+# Process-Text-Information-into-mysql-database 
 Create an sql from data file and upload it to SQL server. 
 ### create a table called last in mysql service 
 create table last(
