@@ -15,6 +15,7 @@ create table last(
 describe last;   
 #### go back to Unix shell and check the last data file 
 last > last.txt 
+
 cat last.txt | head -n 20
 #### delete the bracket and change (00:00) to 00:00
 cat last.txt | tr '( )' ' ' 
