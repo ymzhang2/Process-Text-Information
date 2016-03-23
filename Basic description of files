@@ -1,0 +1,25 @@
+
+### create a table to store the dataset whose lines are filename, numlines and filesize
+create table 5GBsize(
+    -> filename VARCHAR(30),
+    -> numlines INT NOT NULL,
+    -> filesize INT NOT NULL);
+    
+### check the targeted file, where /* represent one folder level ,so /*/*/* means three folder levels 
+
+ls /dats6102/5GB-in-small-files/*/*/* 
+
+### create a variable named "LIST" to save this file list
+
+LIST=(`ls /dats6102/5GB-in-small-files/*/*/*`)
+###use Bash for loops to get the lines and filesize using"|wc"
+for NAME in ${LIST[@]}; do wc $NAME; done
+
+###get the filename and save it as file.txt
+for NAME in ${LIST[@]}; do wc $NAME; done | awk '{split($4,a,"/");print $"1",$"3",a[6]}' > file.txt
+
+### form the insert command with SQL 
+
+cat 5file.txt | awk '{print "INSERT INTO 5GBsize (filename,number_of_lines,filesize)VALUES (\x27"$3"\x27,\x27"$1"\x27,\x27"$2"\x27);"}' <file.sql
+
+
